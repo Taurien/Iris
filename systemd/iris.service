@@ -1,0 +1,17 @@
+[Unit]
+Description=Iris personal assistant (Telegram + local voice bridge)
+After=network.target mcp-memory.service
+Wants=mcp-memory.service
+
+[Service]
+Type=simple
+WorkingDirectory=/home/taurien_l/Desktop/Lab/asistente/iris
+Environment=PATH=/home/taurien_l/.local/bin:/home/taurien_l/.opencode/bin:/home/taurien_l/.bun/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+Environment=PYTHONUNBUFFERED=1
+EnvironmentFile=/home/taurien_l/Desktop/Lab/asistente/iris/.env
+ExecStart=/home/taurien_l/.local/bin/uv run --project /home/taurien_l/Desktop/Lab/asistente/iris python -m iris.main
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=default.target

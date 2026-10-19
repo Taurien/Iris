@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+<title>Iris</title>
+<link rel="stylesheet" href="style.css" />
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<!-- signal-orb.js: MIT, Ship Notes — ver webapp/THIRD_PARTY_NOTICES.md -->
+<script src="signal-orb.js" defer></script>
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="avatar">
+        <signal-orb id="orb" state="done" particles="3000"></signal-orb>
+      </div>
+      <div class="header-text">
+        <h1>Iris</h1>
+        <p id="state-label">en espera</p>
+      </div>
+    </header>
+
+    <main class="messages" id="messages">
+      <div class="bubble bubble-iris">
+        Hola, soy Iris. Escribime algo.
+      </div>
+    </main>
+
+    <form class="composer" id="composer">
+      <input type="text" id="input" placeholder="Escribí un mensaje…" autocomplete="off" />
+      <button type="submit" id="send" aria-label="Enviar">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M3 11.5L21 3l-8.5 18-2.2-7.3L3 11.5z"/></svg>
+      </button>
+    </form>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

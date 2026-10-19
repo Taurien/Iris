@@ -1,0 +1,7 @@
+tunnel: e687475d-74af-4085-9efc-a190fbb3325f
+credentials-file: /home/taurien_l/.cloudflared/e687475d-74af-4085-9efc-a190fbb3325f.json
+
+ingress:
+  - hostname: iris.michelcruz.me
+    service: http://127.0.0.1:8787
+  - service: http_status:404

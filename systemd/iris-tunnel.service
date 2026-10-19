@@ -1,0 +1,13 @@
+[Unit]
+Description=Cloudflare named tunnel for Iris web API (iris.michelcruz.me)
+After=network.target iris.service
+Wants=iris.service
+
+[Service]
+Type=simple
+ExecStart=/home/taurien_l/.local/bin/cloudflared tunnel --config /home/taurien_l/Desktop/Lab/asistente/iris/cloudflared-config.yml --logfile /home/taurien_l/Desktop/Lab/asistente/iris/state/tunnel.log run iris
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
