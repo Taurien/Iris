@@ -392,8 +392,16 @@ class IrisWidget(Gtk.ApplicationWindow):
     def _pin_window(self) -> bool:
         if not shutil.which("wmctrl"):
             return False  # nothing we can do without it; window stays default-placed
+        # wmctrl's `-b add,...` only reliably applies up to 2 states per call
+        # (a _NET_WM_STATE client message carries at most 2 properties) — a
+        # single call with 3+ (e.g. "above,sticky,skip_taskbar") silently
+        # drops ALL of them, confirmed live via xprop. Split into two calls.
         subprocess.run(
-            ["wmctrl", "-r", WINDOW_TITLE, "-b", "add,above,sticky,skip_taskbar"],
+            ["wmctrl", "-r", WINDOW_TITLE, "-b", "add,above,skip_taskbar"],
+            check=False,
+        )
+        subprocess.run(
+            ["wmctrl", "-r", WINDOW_TITLE, "-b", "add,sticky,skip_pager"],
             check=False,
         )
         self._reposition()
